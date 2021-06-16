@@ -15,15 +15,15 @@ namespace Escolar2021.Forms
         SqlCommand cmd;
         string servidor = "FALCON-DELL";
         bool band = false;
-        string
-            ruta = "A:\\BaseDatos",
-            nombre_res = "\\Respaldo Escolar2021-",
-            query,error;
+        string  ruta,
+                nombre_res = "\\Respaldo Escolar2021-",
+                query,error;
 
         public Form_respaldo()
         {
             InitializeComponent();
             con = new SqlConnection("Data Source=" + servidor + ";Initial Catalog=Escolar2021;Integrated Security=True");
+            Bt_Respaldo.Enabled = false;
         }
 
        
@@ -48,7 +48,7 @@ namespace Escolar2021.Forms
         {
             if (Con_Main())
             {
-                this.TxBx_Ruta.Text = ruta + nombre_res + DateTime.Now.ToString("yyyyMMddHHmm") + ".bak";
+                ruta = folderBrowserDialog1.SelectedPath;
                 query = "BACKUP DATABASE Escolar2021 TO DISK ='" + ruta + nombre_res + DateTime.Now.ToString("yyyyMMddHHmm") + ".bak'";
                 cmd = new SqlCommand(query, con);
                 if (MessageBox.Show("Esta seguro de generar el respaldo??", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
@@ -76,6 +76,12 @@ namespace Escolar2021.Forms
         private void Bt_exit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+        private void Lbl_Escoge_Respaldo_Click(object sender, EventArgs e)
+        {
+            folderBrowserDialog1.ShowDialog();
+            TxBx_Ruta.Text = folderBrowserDialog1.SelectedPath + nombre_res + DateTime.Now.ToString("yyyyMMddHHmm") + ".bak";
+            Bt_Respaldo.Enabled = true;
         }
     }
 }

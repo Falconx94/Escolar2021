@@ -29,20 +29,22 @@ namespace Escolar2021.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.Lbl_Ruta = new System.Windows.Forms.Label();
             this.TxBx_Ruta = new System.Windows.Forms.TextBox();
             this.Bt_Respaldo = new System.Windows.Forms.Button();
             this.Bt_exit = new System.Windows.Forms.Button();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.Lbl_Escoge_Respaldo = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // label1
+            // Lbl_Ruta
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(27, 65);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(101, 15);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Ruta de Respaldo:";
+            this.Lbl_Ruta.AutoSize = true;
+            this.Lbl_Ruta.Location = new System.Drawing.Point(27, 65);
+            this.Lbl_Ruta.Name = "Lbl_Ruta";
+            this.Lbl_Ruta.Size = new System.Drawing.Size(101, 15);
+            this.Lbl_Ruta.TabIndex = 0;
+            this.Lbl_Ruta.Text = "Ruta de Respaldo:";
             // 
             // TxBx_Ruta
             // 
@@ -71,15 +73,26 @@ namespace Escolar2021.Forms
             this.Bt_exit.UseVisualStyleBackColor = true;
             this.Bt_exit.Click += new System.EventHandler(this.Bt_exit_Click);
             // 
+            // Lbl_Escoge_Respaldo
+            // 
+            this.Lbl_Escoge_Respaldo.AutoSize = true;
+            this.Lbl_Escoge_Respaldo.Location = new System.Drawing.Point(140, 26);
+            this.Lbl_Escoge_Respaldo.Name = "Lbl_Escoge_Respaldo";
+            this.Lbl_Escoge_Respaldo.Size = new System.Drawing.Size(280, 15);
+            this.Lbl_Escoge_Respaldo.TabIndex = 4;
+            this.Lbl_Escoge_Respaldo.Text = "Click aquí para escoger carpeta destino del respaldo";
+            this.Lbl_Escoge_Respaldo.Click += new System.EventHandler(this.Lbl_Escoge_Respaldo_Click);
+            // 
             // Form_respaldo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(573, 235);
+            this.Controls.Add(this.Lbl_Escoge_Respaldo);
             this.Controls.Add(this.Bt_exit);
             this.Controls.Add(this.Bt_Respaldo);
             this.Controls.Add(this.TxBx_Ruta);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.Lbl_Ruta);
             this.Name = "Form_respaldo";
             this.Text = "Form_respaldo";
             this.ResumeLayout(false);
@@ -89,9 +102,11 @@ namespace Escolar2021.Forms
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label Lbl_Ruta;
         private System.Windows.Forms.TextBox TxBx_Ruta;
         private System.Windows.Forms.Button Bt_Respaldo;
         private System.Windows.Forms.Button Bt_exit;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.Label Lbl_Escoge_Respaldo;
     }
 }
