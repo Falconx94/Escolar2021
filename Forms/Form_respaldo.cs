@@ -15,7 +15,10 @@ namespace Escolar2021.Forms
         SqlCommand cmd;
         string servidor = "FALCON-DELL";
         bool band = false;
-        string ruta = "A:\\BaseDatos", query,error;
+        string
+            ruta = "A:\\BaseDatos",
+            nombre_res = "\\Respaldo Escolar2021-",
+            query,error;
 
         public Form_respaldo()
         {
@@ -45,8 +48,8 @@ namespace Escolar2021.Forms
         {
             if (Con_Main())
             {
-                this.TxBx_Ruta.Text = ruta + DateTime.Now.ToString("yyyyMMddHHmm") + ".bak";
-                query = "BACKUP DATABASE Escolar2021 TO DISK ='" + ruta + DateTime.Now.ToString("yyyyMMddHHmm") + ".bak'";
+                this.TxBx_Ruta.Text = ruta + nombre_res + DateTime.Now.ToString("yyyyMMddHHmm") + ".bak";
+                query = "BACKUP DATABASE Escolar2021 TO DISK ='" + ruta + nombre_res + DateTime.Now.ToString("yyyyMMddHHmm") + ".bak'";
                 cmd = new SqlCommand(query, con);
                 if (MessageBox.Show("Esta seguro de generar el respaldo??", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {

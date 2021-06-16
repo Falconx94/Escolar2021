@@ -38,15 +38,15 @@ namespace Escolar2021.Forms
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(74, 64);
+            this.label1.Location = new System.Drawing.Point(27, 65);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 15);
+            this.label1.Size = new System.Drawing.Size(101, 15);
             this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
+            this.label1.Text = "Ruta de Respaldo:";
             // 
             // TxBx_Ruta
             // 
-            this.TxBx_Ruta.Location = new System.Drawing.Point(118, 61);
+            this.TxBx_Ruta.Location = new System.Drawing.Point(134, 61);
             this.TxBx_Ruta.Name = "TxBx_Ruta";
             this.TxBx_Ruta.Size = new System.Drawing.Size(343, 23);
             this.TxBx_Ruta.TabIndex = 1;
