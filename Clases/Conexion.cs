@@ -37,8 +37,9 @@ namespace Escolar2021.Clases
         {
             try
             {
+                Con_Main();
                 cmd = new SqlCommand("Select * from usuarios" +
-                    " where nombre = '"+usuario+"' ", con);
+                    " where us_login = '"+usuario+"' ", con);
                 dr = cmd.ExecuteReader();
                 if (dr.Read())
                 {

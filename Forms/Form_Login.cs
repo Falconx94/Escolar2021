@@ -14,11 +14,13 @@ namespace Escolar2021.Forms
 {
     public partial class Form_Login : Form
     {
-        string Query, usuario, Contraseña, Nivel, Ult_acceso, error;
+        string Query, usuario, Contraseña, Nivel, Ult_acceso, error, AU_actividad, AU_usuario;
+        DateTime AU_fecha;
         string servidor = "FALCON-DELL";
         bool band = false;
         SqlConnection con;
-        Conexion conex;
+        Conexion conex = new Conexion();
+        Globales glb = new Globales();
 
         #region Metodos
         public bool Con_Main()
@@ -47,7 +49,6 @@ namespace Escolar2021.Forms
         {
             TxBx_Pass.Enabled = true;
             TxBx_Lvl.Enabled = true;
-            TxBx_Acces.Enabled = true;
         }
         #endregion
 
@@ -66,7 +67,11 @@ namespace Escolar2021.Forms
         }
         private void BT_Ingreso_Click(object sender, EventArgs e)
         {
-
+            AU_actividad = "Ingreso al Sistema escolar";
+            AU_usuario = usuario;
+            AU_fecha = Convert.ToDateTime(TxBx_Acces.Text);
+            glb.Auditoria(AU_actividad, AU_usuario, AU_fecha);
+            this.Hide();
         }
 
         private void TxBx_User_KeyPress(object sender, KeyPressEventArgs e)
@@ -74,9 +79,19 @@ namespace Escolar2021.Forms
             if (e.KeyChar == 13)
             {
                 usuario = TxBx_User.Text;
-                conex.Buscar(usuario);
+                if(conex.Buscar(usuario))
+                {
+                    TxBx_Acces.Text = DateTime.Now.ToString();
+                }
                 Armar();
             }
+        }
+        private void BT_Exit_Click(object sender, EventArgs e)
+        {
+            AU_actividad = "Intento ingresar al Sistema escolar";
+            AU_usuario = usuario;
+            AU_fecha = Convert.ToDateTime(TxBx_Acces.Text);
+            glb.Auditoria(AU_actividad, AU_usuario, AU_fecha);
         }
     }
 }

@@ -6,14 +6,15 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using Escolar2021.Clases;
 
 namespace Escolar2021.Forms
 {
     public partial class Form_respaldo : Form
     {
+        string servidor = "FALCON-DELL";
         SqlConnection con;
         SqlCommand cmd;
-        string servidor = "FALCON-DELL";
         bool band = false;
         string  ruta,
                 nombre_res = "\\Respaldo Escolar2021-",
@@ -22,7 +23,6 @@ namespace Escolar2021.Forms
         public Form_respaldo()
         {
             InitializeComponent();
-            con = new SqlConnection("Data Source=" + servidor + ";Initial Catalog=Escolar2021;Integrated Security=True");
             Bt_Respaldo.Enabled = false;
         }
 
@@ -43,7 +43,6 @@ namespace Escolar2021.Forms
             }
             return band;
         }
-
         public void Respaldo()
         {
             if (Con_Main())

@@ -39,6 +39,8 @@ namespace Escolar2021.Forms
             this.label4 = new System.Windows.Forms.Label();
             this.BT_Ingreso = new System.Windows.Forms.Button();
             this.BT_Exit = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // TxBx_User
@@ -128,12 +130,22 @@ namespace Escolar2021.Forms
             this.BT_Exit.TabIndex = 9;
             this.BT_Exit.Text = "Salir";
             this.BT_Exit.UseVisualStyleBackColor = true;
+            this.BT_Exit.Click += new System.EventHandler(this.BT_Exit_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(386, 30);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(223, 242);
+            this.pictureBox1.TabIndex = 10;
+            this.pictureBox1.TabStop = false;
             // 
             // Form_Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(636, 299);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.BT_Exit);
             this.Controls.Add(this.BT_Ingreso);
             this.Controls.Add(this.label4);
@@ -146,6 +158,7 @@ namespace Escolar2021.Forms
             this.Controls.Add(this.TxBx_User);
             this.Name = "Form_Login";
             this.Text = "Form_Login";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -163,5 +176,6 @@ namespace Escolar2021.Forms
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button BT_Ingreso;
         private System.Windows.Forms.Button BT_Exit;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

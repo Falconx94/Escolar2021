@@ -17,7 +17,7 @@ namespace Escolar2021
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Forms.Form_respaldo());
+            Application.Run(new Forms.Form_Login());
         }
     }
 }
