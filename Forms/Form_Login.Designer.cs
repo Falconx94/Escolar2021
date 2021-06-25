@@ -29,6 +29,7 @@ namespace Escolar2021.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Login));
             this.TxBx_User = new System.Windows.Forms.TextBox();
             this.TxBx_Pass = new System.Windows.Forms.TextBox();
             this.TxBx_Lvl = new System.Windows.Forms.TextBox();
@@ -39,8 +40,8 @@ namespace Escolar2021.Forms
             this.label4 = new System.Windows.Forms.Label();
             this.BT_Ingreso = new System.Windows.Forms.Button();
             this.BT_Exit = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.FT_User = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.FT_User)).BeginInit();
             this.SuspendLayout();
             // 
             // TxBx_User
@@ -55,8 +56,10 @@ namespace Escolar2021.Forms
             // 
             this.TxBx_Pass.Location = new System.Drawing.Point(150, 89);
             this.TxBx_Pass.Name = "TxBx_Pass";
+            this.TxBx_Pass.PasswordChar = '♠';
             this.TxBx_Pass.Size = new System.Drawing.Size(171, 23);
             this.TxBx_Pass.TabIndex = 1;
+            this.TxBx_Pass.Tag = "";
             // 
             // TxBx_Lvl
             // 
@@ -114,38 +117,42 @@ namespace Escolar2021.Forms
             // 
             // BT_Ingreso
             // 
-            this.BT_Ingreso.Location = new System.Drawing.Point(150, 230);
+            this.BT_Ingreso.BackgroundImage = global::Escolar2021.Properties.Resources.log_in;
+            this.BT_Ingreso.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BT_Ingreso.Location = new System.Drawing.Point(96, 205);
             this.BT_Ingreso.Name = "BT_Ingreso";
-            this.BT_Ingreso.Size = new System.Drawing.Size(75, 23);
+            this.BT_Ingreso.Size = new System.Drawing.Size(73, 72);
             this.BT_Ingreso.TabIndex = 8;
-            this.BT_Ingreso.Text = "Entrar";
             this.BT_Ingreso.UseVisualStyleBackColor = true;
             this.BT_Ingreso.Click += new System.EventHandler(this.BT_Ingreso_Click);
             // 
             // BT_Exit
             // 
-            this.BT_Exit.Location = new System.Drawing.Point(246, 230);
+            this.BT_Exit.BackgroundImage = global::Escolar2021.Properties.Resources.close_button;
+            this.BT_Exit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BT_Exit.Location = new System.Drawing.Point(212, 205);
             this.BT_Exit.Name = "BT_Exit";
-            this.BT_Exit.Size = new System.Drawing.Size(75, 23);
+            this.BT_Exit.Size = new System.Drawing.Size(75, 72);
             this.BT_Exit.TabIndex = 9;
-            this.BT_Exit.Text = "Salir";
             this.BT_Exit.UseVisualStyleBackColor = true;
             this.BT_Exit.Click += new System.EventHandler(this.BT_Exit_Click);
             // 
-            // pictureBox1
+            // FT_User
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(386, 30);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(223, 242);
-            this.pictureBox1.TabIndex = 10;
-            this.pictureBox1.TabStop = false;
+            this.FT_User.Image = global::Escolar2021.Properties.Resources.profile_user;
+            this.FT_User.Location = new System.Drawing.Point(377, 30);
+            this.FT_User.Name = "FT_User";
+            this.FT_User.Size = new System.Drawing.Size(232, 242);
+            this.FT_User.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.FT_User.TabIndex = 10;
+            this.FT_User.TabStop = false;
             // 
             // Form_Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(636, 299);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.FT_User);
             this.Controls.Add(this.BT_Exit);
             this.Controls.Add(this.BT_Ingreso);
             this.Controls.Add(this.label4);
@@ -156,9 +163,10 @@ namespace Escolar2021.Forms
             this.Controls.Add(this.TxBx_Lvl);
             this.Controls.Add(this.TxBx_Pass);
             this.Controls.Add(this.TxBx_User);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form_Login";
-            this.Text = "Form_Login";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.Text = "Escolar2021  Login";
+            ((System.ComponentModel.ISupportInitialize)(this.FT_User)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -176,6 +184,6 @@ namespace Escolar2021.Forms
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button BT_Ingreso;
         private System.Windows.Forms.Button BT_Exit;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox FT_User;
     }
 }

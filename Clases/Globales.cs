@@ -9,11 +9,11 @@ namespace Escolar2021.Clases
 {
     class Globales
     {
-        public static string AU_usuario;
-        public static int AU_nivel;
-        public static int AU_actividad;
-        public static DateTime AU_fecha;
-        string query;
+        public static string usuario;
+        public static int nivel;
+        public static string actividad;
+        public static DateTime fecha;
+        string query,error;
         string servidor = "FALCON-DELL";
         bool band = false;
         SqlConnection con;
@@ -28,24 +28,45 @@ namespace Escolar2021.Clases
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error en la conexión a la base de datos error: " + ex.ToString());
+                error = "Error en la conexión a la base de datos error: " + ex.ToString();
                 band = false;
             }
             return band;
         }
         public void Auditoria(string AU_actividad, string AU_usuario, DateTime AU_fecha)
         {
-            if(Con_Main())
+            if (Con_Main())
             {
-                query = "insert into auditoria values(@au_login,@au_fecha,@au_actividad)";
-                cmd = new SqlCommand(query, con);
-                cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@au_login", AU_usuario);
-                cmd.Parameters.AddWithValue("@au_fecha", AU_fecha);
-                cmd.Parameters.AddWithValue("@au_actividad", AU_actividad);
-                cmd.ExecuteNonQuery();
+                usuario = AU_usuario;
+                fecha = AU_fecha;
+                actividad = AU_actividad;
+                Inserta_Auditoria();
+                Actualiza_Usuario();
                 con.Close();
             }
+            else
+            {
+                MessageBox.Show(error);
+            }
+        }
+        public void Inserta_Auditoria()
+        {
+            query = "insert into auditoria values(@au_login,@au_fecha,@au_actividad)";
+            cmd = new SqlCommand(query, con);
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@au_login", usuario);
+            cmd.Parameters.AddWithValue("@au_fecha", fecha);
+            cmd.Parameters.AddWithValue("@au_actividad", actividad);
+            cmd.ExecuteNonQuery();
+        }
+        public void Actualiza_Usuario()
+        {
+            query = "update usuarios set us_ultimoacceso = @au_fecha where us_login = @au_login";
+            cmd = new SqlCommand(query, con);
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@au_login", usuario);
+            cmd.Parameters.AddWithValue("@au_fecha", fecha);
+            cmd.ExecuteNonQuery();
         }
     }
 }

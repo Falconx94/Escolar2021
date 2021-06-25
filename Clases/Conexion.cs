@@ -15,7 +15,7 @@ namespace Escolar2021.Clases
         SqlConnection con;
         SqlCommand cmd;
         SqlDataReader dr;
-        string servidor = "FALCON-DELL";
+        string servidor = "FALCON-DELL",query;
         bool band = false;
 
         public bool Con_Main()
@@ -38,8 +38,32 @@ namespace Escolar2021.Clases
             try
             {
                 Con_Main();
-                cmd = new SqlCommand("Select * from usuarios" +
-                    " where us_login = '"+usuario+"' ", con);
+                query = "Select * from usuarios where us_login = '" + usuario + "' ";
+                cmd = new SqlCommand(query, con);
+                dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    band = true;
+                }
+                else
+                {
+                    band = false;
+                }
+                dr.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se realizo la consulta " + ex.ToString());
+            }
+            return band;
+        }
+        public bool Confirma_Pass(string usuario, string password)
+        {
+            try
+            {
+                Con_Main();
+                query = "Select * from usuarios where us_login = '" + usuario + "' and us_password = '" + password + "' ";
+                cmd = new SqlCommand(query, con);
                 dr = cmd.ExecuteReader();
                 if (dr.Read())
                 {
