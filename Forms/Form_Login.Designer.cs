@@ -60,6 +60,7 @@ namespace Escolar2021.Forms
             this.TxBx_Pass.Size = new System.Drawing.Size(171, 23);
             this.TxBx_Pass.TabIndex = 1;
             this.TxBx_Pass.Tag = "";
+            this.TxBx_Pass.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxBx_Pass_KeyPress);
             // 
             // TxBx_Lvl
             // 

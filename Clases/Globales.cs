@@ -33,8 +33,9 @@ namespace Escolar2021.Clases
             }
             return band;
         }
-        public void Auditoria(string AU_actividad, string AU_usuario, DateTime AU_fecha)
+        public void Auditoria(string AU_actividad, string AU_usuario, DateTime AU_fecha,int Au_Nivel)
         {
+            nivel = Au_Nivel;
             if (Con_Main())
             {
                 usuario = AU_usuario;

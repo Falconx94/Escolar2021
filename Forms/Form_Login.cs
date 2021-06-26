@@ -17,6 +17,7 @@ namespace Escolar2021.Forms
     {
         string query, usuario, lvl, nivel, password, Ult_acceso, error, AU_actividad, AU_usuario;
         DateTime AU_fecha;
+        int AU_Nivel,tecla;
         string servidor = "FALCON-DELL", ruta_foto="A:\\Repositorios\\Escolar2021\\Fotos\\",foto;
         bool band = false;
         OpenFileDialog Img = new OpenFileDialog();
@@ -26,6 +27,19 @@ namespace Escolar2021.Forms
         Conexion conex = new Conexion();
         Globales glb = new Globales();
         Form_Menu mn = new Form_Menu();
+
+        public Form_Login()
+        {
+            if (Con_Main())
+            {
+                InitializeComponent();
+                Desarmar();
+            }
+            else
+            {
+                MessageBox.Show("Error en la conexión a la base de datos: " + error);
+            }
+        }
 
         #region Metodos
         public bool Con_Main()
@@ -49,7 +63,6 @@ namespace Escolar2021.Forms
             TxBx_Lvl.Enabled = false;
             TxBx_Acces.Enabled = false;
         }
-        
         public void Nivel_user()
         {
             Con_Main();
@@ -72,6 +85,7 @@ namespace Escolar2021.Forms
                         nivel = "Invitado";
                         break;
                 }
+                AU_Nivel = Convert.ToInt32(lvl);
             }
             else
             {
@@ -102,39 +116,62 @@ namespace Escolar2021.Forms
                     break;
             }
         }
-        #endregion
-
-        public Form_Login()
+        public bool Valida_Pass()
         {
-            if (Con_Main())
-            {
-                InitializeComponent();
-                Desarmar();
-            }
-            else
-            {
-                MessageBox.Show("Error en la conexión a la base de datos: " + error);
-            }
-        }
-        #region Botones y Textos
-        private void BT_Ingreso_Click(object sender, EventArgs e)
-        {
-            password = TxBx_Pass.Text;
             if (conex.Confirma_Pass(usuario, password))
             {
                 AU_actividad = "Ingreso al Sistema escolar";
                 AU_usuario = usuario;
                 AU_fecha = Convert.ToDateTime(TxBx_Acces.Text);
-                glb.Auditoria(AU_actividad, AU_usuario, AU_fecha);
-                mn.ShowDialog();
+                glb.Auditoria(AU_actividad, AU_usuario, AU_fecha,AU_Nivel);
+                band = true;
+            }
+            else
+            {
+                band = false;
+            }
+            return band;
+        }
+        #endregion
+
+        #region Botones y Textos
+        private void TxBx_Pass_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            tecla = Convert.ToInt32(e.KeyChar);
+            switch(tecla)
+            {
+                case 13:
+                    password = TxBx_Pass.Text;
+                    if (Valida_Pass())
+                    {
+                        this.Hide();
+                        mn.ShowDialog();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Contraseña o usuario incorrectos");
+                    }
+                    break;
+                case 27:
+                    TxBx_User.Enabled = true;
+                    TxBx_User.Focus();
+                    TxBx_Pass.Enabled = false;
+                    break;
+            }
+        }
+        private void BT_Ingreso_Click(object sender, EventArgs e)
+        {
+            password = TxBx_Pass.Text;
+            if (Valida_Pass())
+            {
                 this.Hide();
+                mn.ShowDialog();
             }
             else
             {
                 MessageBox.Show("Contraseña o usuario incorrectos");
             }
         }
-
         private void TxBx_User_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 13)
@@ -145,6 +182,7 @@ namespace Escolar2021.Forms
                     Fotos();
                     Nivel_user();
                     TxBx_Acces.Text = DateTime.Now.ToString();
+                    TxBx_User.Enabled = false;
                     TxBx_Pass.Enabled = true;
                     TxBx_Pass.Focus();
                 }
@@ -166,13 +204,17 @@ namespace Escolar2021.Forms
                 AU_usuario = usuario;
                 Ult_acceso = DateTime.Now.ToString();
                 AU_fecha = Convert.ToDateTime(Ult_acceso);
-                glb.Auditoria(AU_actividad, AU_usuario, AU_fecha);
-                this.Close();
+                glb.Auditoria(AU_actividad, AU_usuario, AU_fecha,AU_Nivel);
             }
             else
             {
-                this.Close();
+                AU_actividad = "Intento ingresar al Sistema escolar";
+                AU_usuario = "Desconocido";
+                Ult_acceso = DateTime.Now.ToString();
+                AU_fecha = Convert.ToDateTime(Ult_acceso);
+                glb.Auditoria(AU_actividad, AU_usuario, AU_fecha,AU_Nivel);
             }
+            this.Close();
         }
         #endregion
     }

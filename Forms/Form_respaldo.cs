@@ -12,6 +12,10 @@ namespace Escolar2021.Forms
 {
     public partial class Form_respaldo : Form
     {
+        Globales glb = new Globales();
+        int AU_Nivel;
+        string AU_actividad, AU_usuario;
+        DateTime AU_fecha;
         string servidor = "FALCON-DELL";
         SqlConnection con;
         SqlCommand cmd;
@@ -54,10 +58,18 @@ namespace Escolar2021.Forms
                 {
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Respaldo realizado con exito", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    AU_fecha = DateTime.Now;
+                    AU_usuario = Clases.Globales.usuario;
+                    AU_actividad = "Creo Respaldo a Base de Datos";
+                    glb.Auditoria(AU_actividad, AU_usuario, AU_fecha, AU_Nivel);
                 }
                 else
                 {
                     MessageBox.Show("Respaldo Anulado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    AU_fecha = DateTime.Now;
+                    AU_usuario = Clases.Globales.usuario;
+                    AU_actividad = "Anulo creacion de Respaldo a Base de Datos";
+                    glb.Auditoria(AU_actividad, AU_usuario, AU_fecha, AU_Nivel);
                     TxBx_Ruta.Clear();
                 }
                 con.Close();
